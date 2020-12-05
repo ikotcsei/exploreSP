@@ -54,7 +54,11 @@ INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
 
 INSERT INTO users(username, password, enabled) VALUES('user', 'user', true);
 INSERT INTO users(username, password, enabled) VALUES('admin', 'admin', true);
+INSERT INTO users(username, password, enabled) VALUES('feri', 'user', true);
+INSERT INTO users(username, password, enabled) VALUES('sanyi', 'user', true);
 
+INSERT INTO authorities(username, authority) VALUES('sanyi','ROLE_USER');
+INSERT INTO authorities(username, authority) VALUES('feri','ROLE_USER');
 INSERT INTO authorities(username, authority) VALUES('user','ROLE_USER');
 INSERT INTO authorities(username, authority) VALUES('admin','ROLE_ADMIN');
 
