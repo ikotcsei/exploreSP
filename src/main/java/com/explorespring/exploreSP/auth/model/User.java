@@ -2,16 +2,17 @@ package com.explorespring.exploreSP.auth.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "User")
+@Entity   //will be mapped to a table
+@Table(name = "users", schema = "public")    //table name and sema req in postgres
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="username")
     private String userName;
     private String password;
-    private boolean active;
-    private String roles;
+    private boolean enabled;
+//    private String roles;
 
     public int getId() {
         return id;
@@ -37,19 +38,19 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
+//    public String getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(String roles) {
+//        this.roles = roles;
+//    }
 }

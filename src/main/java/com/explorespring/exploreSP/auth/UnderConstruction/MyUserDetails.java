@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MyUserDetails implements UserDetails {
@@ -27,17 +26,18 @@ public class MyUserDetails implements UserDetails {
 
 		this.userName = userName.getUserName();
 		this.password = userName.getPassword();
-		this.active = userName.isActive();
-		this.authorities = Arrays.stream(userName.getRoles().split(","))
-				.map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+		this.active = userName.isEnabled();
+//		this.authorities = Arrays.stream(userName.getRoles().split(","))
+//				.map(SimpleGrantedAuthority::new)
+//				.collect(Collectors.toList());
 
 	}
 
 	// return granted authority instances ?:for the user
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+//		return authorities;
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 
 	@Override

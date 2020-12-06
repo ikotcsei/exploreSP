@@ -73,8 +73,8 @@ create table users(
 );
 
 create table authorities (
-	username varchar(50) not null,
-	authority varchar(50) not null,
+	username varchar_ignorecase(50) not null,
+	authority varchar_ignorecase(50) not null,
 	constraint fk_authorities_users foreign key(username) references users(username)
 );
 
