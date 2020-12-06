@@ -5,6 +5,8 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
+--DROP TABLE users IF EXISTS;
+--DROP TABLE authorities IF EXISTS;
 
 
 
@@ -71,8 +73,8 @@ create table users(
 );
 
 create table authorities (
-	username varchar_ignorecase(50) not null,
-	authority varchar_ignorecase(50) not null,
+	username varchar(50) not null,
+	authority varchar(50) not null,
 	constraint fk_authorities_users foreign key(username) references users(username)
 );
 

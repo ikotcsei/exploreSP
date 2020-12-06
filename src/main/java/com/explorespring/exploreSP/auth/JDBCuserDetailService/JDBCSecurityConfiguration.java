@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth;
+package com.explorespring.exploreSP.auth.JDBCuserDetailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,38 +14,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	// spring autoconfigure the datasource, configured in application.properties
+
 	@Autowired
-	DataSource dataSource;
+	UserDetailsService uds;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// default user schema, without configuration
 		// https://docs.spring.io/spring-security/site/docs/4.0.x/reference/html/appendix-schema.html
 
+//		 configure via UserDetailsService
+		auth.userDetailsService(uds);
 
-		// configure via jdbc
-		 auth.jdbcAuthentication()
-		 .dataSource(dataSource)
-		 .withDefaultSchema()
-		 .withUser( //populate a user to the schema
-		 User.withUsername("jdbcuser")
-		 .password("jdbcuser")
-		 .roles("USER")
-		 )
-		 .withUser(
-		 User.withUsername("jdbcadmin")
-		 .password("jdbcadmin")
-		 .roles("ADMIN")
-
-		 );
-
-		// overwrite the default table queries getting user names and authorities
-		// .userByUsernameQuery("select username,password,enabled from ....")
-		// .authoritiesByUsernameQuery("select username,authority from ...")
 
 	}
 

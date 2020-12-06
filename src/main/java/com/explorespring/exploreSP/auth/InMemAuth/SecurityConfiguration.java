@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth;
+package com.explorespring.exploreSP.auth.InMemAuth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,15 +25,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 		jwt
 * */
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder authM) throws Exception {
 
 		// basic memory AUTHENTICATION hardcoded here
-		authM.inMemoryAuthentication().withUser("user").password("user").roles("USER").and().withUser("admin")
+		authM.inMemoryAuthentication().withUser("inmemuser").password("inmemuser").roles("USER").and().withUser("admin")
 				.password("admin").roles("ADMIN");
 
 		// authM.jdbcAuthentication()....

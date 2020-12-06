@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth;
+package com.explorespring.exploreSP.auth.JDBCuserDetailService;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collection;
 
-@Service
+//@Service
 public class MyUserDetails implements UserDetails {
 
 	private String userName;
