@@ -25,8 +25,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 		jwt
 * */
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override

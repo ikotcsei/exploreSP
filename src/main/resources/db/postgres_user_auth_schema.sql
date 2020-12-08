@@ -19,7 +19,12 @@ INSERT INTO users(username, password, enabled) VALUES('admin', 'admin', true);
 INSERT INTO users(username, password, enabled) VALUES('feri', 'user', true);
 INSERT INTO users(username, password, enabled) VALUES('sanyi', 'user', true);
 
+INSERT INTO users(username, password, enabled) VALUES('admin2', 'admin', true);
+
 INSERT INTO authorities(username, authority) VALUES('sanyi','ROLE_USER');
 INSERT INTO authorities(username, authority) VALUES('feri','ROLE_USER');
 INSERT INTO authorities(username, authority) VALUES('user','ROLE_USER');
-INSERT INTO authorities(username, authority) VALUES('admin','ROLE_ADMIN');
+INSERT INTO authorities(username, authority) VALUES('admin','ROLE_ADMIN,ROLE_USER');
+
+
+INSERT INTO authorities(username, authority) VALUES('admin2','ROLE_ADMIN,ROLE_USER');

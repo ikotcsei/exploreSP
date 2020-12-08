@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collection;
 
-//@Service
+@Service
 public class MyUserDetails implements UserDetails {
 
 	private String userName;

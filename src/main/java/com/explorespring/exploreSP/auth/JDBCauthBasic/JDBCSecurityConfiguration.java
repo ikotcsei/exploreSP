@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 //creates tables users and authorities, remove sql statements from shcema to work
 //or remove schema load from application.properties
-//@EnableWebSecurity
+@EnableWebSecurity
 public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired

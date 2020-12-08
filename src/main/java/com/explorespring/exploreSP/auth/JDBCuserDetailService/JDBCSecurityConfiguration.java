@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-//@EnableWebSecurity
+@EnableWebSecurity
 public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 

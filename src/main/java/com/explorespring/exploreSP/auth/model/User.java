@@ -12,6 +12,11 @@ public class User {
     private String userName;
     private String password;
     private boolean enabled;
+
+    @OneToOne
+    @JoinColumn(name = "username",referencedColumnName = "username")
+    private Authority auth;
+
 //    private String roles;
 
     public int getId() {
@@ -44,6 +49,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Authority getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Authority auth) {
+        this.auth = auth;
     }
 
 //    public String getRoles() {
