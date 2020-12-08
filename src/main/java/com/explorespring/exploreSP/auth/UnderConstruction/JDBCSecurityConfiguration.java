@@ -19,12 +19,8 @@ public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// default user schema, without configuration
-		// https://docs.spring.io/spring-security/site/docs/4.0.x/reference/html/appendix-schema.html
 
-//		 configure via UserDetailsService
 		auth.userDetailsService(uds);
-
 
 	}
 

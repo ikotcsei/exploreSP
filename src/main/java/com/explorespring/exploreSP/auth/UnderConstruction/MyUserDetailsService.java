@@ -38,8 +38,12 @@ public class MyUserDetailsService implements UserDetailsService {
 		user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + userName));
 
 		//return the UserDetails object created by user object
-		// map(function).get() - maps the function to the object, and gets the value
-		return user.map(MyUserDetails::new).get();
+		// map(function) - maps the function to the object,
+		// get()  returns the "wrapped" value
+		//MyUserDetails::new - create a new MyUserDetails obj.
+		return user
+				.map(MyUserDetails::new)
+				.get();
 	}
 
 }
