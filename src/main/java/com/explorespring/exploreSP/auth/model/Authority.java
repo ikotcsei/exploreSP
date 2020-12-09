@@ -6,12 +6,14 @@ import javax.persistence.*;
 @Table(name = "authorities", schema = "public")    //table name and sema req in postgres
 public class Authority {
 
+    @Id
     @Column(name = "username")
     private String userName;
     @Column(name = "authority")
     private String authority;
 
-    @OneToOne(mappedBy = "authorities")
+
+    @OneToOne(mappedBy = "auth")
     private User user;
 
     public String getUserName() {

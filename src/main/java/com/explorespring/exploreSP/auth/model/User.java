@@ -13,8 +13,9 @@ public class User {
     private String password;
     private boolean enabled;
 
-    @OneToOne
-    @JoinColumn(name = "username",referencedColumnName = "username")
+//    @JoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "authorities_username",referencedColumnName = "username")
     private Authority auth;
 
 //    private String roles;
