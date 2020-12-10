@@ -16,9 +16,9 @@ public class Address {
         @Column(name = "address")
         private String address;
 
-        @OneToMany
-        @JoinColumn(name = "address_id") // we need to duplicate the physical information
-        private Set<People> items;
+//        @OneToMany
+//        @JoinColumn(name = "people_id") // we need to duplicate the physical information
+//        private Set<People> people;
 
 
     public String getAddress() {
