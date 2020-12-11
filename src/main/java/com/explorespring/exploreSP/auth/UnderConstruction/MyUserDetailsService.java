@@ -46,4 +46,9 @@ public class MyUserDetailsService implements UserDetailsService {
 				.get();
 	}
 
+	//for testing
+	public UserRepository getUserRepository(){
+		return this.userRepository;
+	}
+
 }

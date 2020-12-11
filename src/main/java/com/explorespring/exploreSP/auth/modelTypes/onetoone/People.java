@@ -1,10 +1,6 @@
 package com.explorespring.exploreSP.auth.modelTypes.onetoone;
 
 import javax.persistence.*;
-import java.util.Set;
-
-
-
 
 
 @Entity

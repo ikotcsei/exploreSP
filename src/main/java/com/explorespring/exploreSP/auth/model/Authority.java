@@ -13,8 +13,8 @@ public class Authority {
     private String authority;
 
 
-    @OneToOne(mappedBy = "auth")
-    private User user;
+//    @OneToOne(mappedBy = "auth")
+//    private User user;
 
     public String getUserName() {
         return userName;
@@ -32,12 +32,13 @@ public class Authority {
         this.authority = authority;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
 

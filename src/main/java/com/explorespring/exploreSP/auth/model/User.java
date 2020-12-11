@@ -14,9 +14,9 @@ public class User {
     private boolean enabled;
 
 //    @JoinColumn
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "authorities_username",referencedColumnName = "username")
-    private Authority auth;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "authorities_username",referencedColumnName = "username")
+//    private Authority auth;
 
 //    private String roles;
 
@@ -52,15 +52,25 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Authority getAuth() {
-        return auth;
+//    public Authority getAuth() {
+//        return auth;
+//    }
+//
+//    public void setAuth(Authority auth) {
+//        this.auth = auth;
+//    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                '}';
     }
 
-    public void setAuth(Authority auth) {
-        this.auth = auth;
-    }
-
-//    public String getRoles() {
+    //    public String getRoles() {
 //        return roles;
 //    }
 //
