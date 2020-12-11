@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth.UnderConstruction;
+package com.explorespring.exploreSP.auth.JDBCPostgresql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

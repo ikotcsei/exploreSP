@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth.modelTypes.onetoone;
+package com.explorespring.exploreSP.model;
 
 import javax.persistence.*;
 

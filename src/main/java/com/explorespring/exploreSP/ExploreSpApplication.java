@@ -1,8 +1,7 @@
 package com.explorespring.exploreSP;
 
-import com.explorespring.exploreSP.auth.UnderConstruction.MyUserDetailsService;
-import com.explorespring.exploreSP.auth.model.User;
-import com.explorespring.exploreSP.auth.model.UserRepository;
+import com.explorespring.exploreSP.auth.JDBCPostgresql.MyUserDetailsService;
+import com.explorespring.exploreSP.model.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

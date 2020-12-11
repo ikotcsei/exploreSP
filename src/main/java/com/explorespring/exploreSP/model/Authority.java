@@ -1,4 +1,4 @@
-package com.explorespring.exploreSP.auth.model;
+package com.explorespring.exploreSP.model;
 
 import javax.persistence.*;
 

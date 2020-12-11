@@ -1,6 +1,6 @@
-package com.explorespring.exploreSP.auth.UnderConstruction;
+package com.explorespring.exploreSP.auth.JDBCPostgresql;
 
-import com.explorespring.exploreSP.auth.model.User;
+import com.explorespring.exploreSP.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
 package com.explorespring.exploreSP.controllers;
 
 
-import com.explorespring.exploreSP.auth.model.UserRepository;
+import com.explorespring.exploreSP.model.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
