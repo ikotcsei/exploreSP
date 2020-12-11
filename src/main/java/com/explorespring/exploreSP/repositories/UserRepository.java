@@ -1,14 +1,18 @@
-package com.explorespring.exploreSP.model;
+package com.explorespring.exploreSP.repositories;
 
+import com.explorespring.exploreSP.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 /*extends Repository, CrudRepository, JpaRepository
 *
 * */
-                                            // JpaRepository<return type, id-type>
+
+@Repository                             // JpaRepository<return type, id-type>
 public interface UserRepository extends CrudRepository<User, Integer> {
     //automatic method generated findById, findBy.... (User object field vars)
     Optional<User> findByUserName(String userName);

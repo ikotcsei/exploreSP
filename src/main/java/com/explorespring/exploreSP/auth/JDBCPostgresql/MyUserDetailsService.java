@@ -1,7 +1,7 @@
 package com.explorespring.exploreSP.auth.JDBCPostgresql;
 
 import com.explorespring.exploreSP.model.User;
-import com.explorespring.exploreSP.model.UserRepository;
+import com.explorespring.exploreSP.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

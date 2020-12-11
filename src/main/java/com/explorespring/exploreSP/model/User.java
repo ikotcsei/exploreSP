@@ -13,6 +13,16 @@ public class User {
     private String password;
     private boolean enabled;
 
+    public User(){
+
+    }
+
+    public User(String userName, String password, boolean enabled) {
+        this.userName = userName;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
 //    @JoinColumn
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "authorities_username",referencedColumnName = "username")
@@ -52,13 +62,7 @@ public class User {
         this.enabled = enabled;
     }
 
-//    public Authority getAuth() {
-//        return auth;
-//    }
-//
-//    public void setAuth(Authority auth) {
-//        this.auth = auth;
-//    }
+
 
     @Override
     public String toString() {
@@ -70,11 +74,5 @@ public class User {
                 '}';
     }
 
-    //    public String getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(String roles) {
-//        this.roles = roles;
-//    }
+
 }
