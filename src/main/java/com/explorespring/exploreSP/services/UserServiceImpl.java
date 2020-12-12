@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public void saveUser(String name, String pass, boolean isEnabled){
-//        User uToInser = new User(u);
+
         User tmpU = new User(name,pass,isEnabled);
         userRepository.save(tmpU);
     }
