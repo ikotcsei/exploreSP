@@ -5,6 +5,8 @@ import com.explorespring.exploreSP.model.User;
 import com.explorespring.exploreSP.repositories.UserRepository;
 import com.explorespring.exploreSP.services.UserService;
 import com.explorespring.exploreSP.services.UserServiceImpl;
+import com.explorespring.exploreSP.utility.EmailGenerator;
+import com.explorespring.exploreSP.utility.NameGenerator;
 import com.mifmif.common.regex.Generex;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -62,6 +64,18 @@ public class ExploreSpApplication {
 		}
 		catch(Exception exep){
 				System.out.println(exep.toString());
+		}
+
+		System.out.println("-----------------------------------------------");
+
+		EmailGenerator eGen = new EmailGenerator("[a-z]{1,5}[@]{1}[a-z]{1,5}[.]{1}[c][o][m]",5,20);
+		for(int i=0;i<10;i++){
+			System.out.println(eGen.getRandomEmail());
+		}
+
+		NameGenerator nGen = new NameGenerator("[A-Z][a-z]{3,8}[ ]{1}[A-Z][a-z]{3,8}",5,20);
+		for(int i=0;i<10;i++){
+			System.out.println(nGen.getRandomName());
 		}
 
 	//random name, email, pwd, stb

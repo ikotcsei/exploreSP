@@ -2,18 +2,24 @@ package com.explorespring.exploreSP.controllers;
 
 
 import com.explorespring.exploreSP.repositories.UserRepository;
+import com.explorespring.exploreSP.services.UserService;
+import com.explorespring.exploreSP.services.UserServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 
-    UserRepository userRepository;
+//    UserRepository userRepository;
+    UserService userService;
+
+    public HomeController(UserService userService) {
+        this.userService = userService;
+    }
 
     //constructors r @Autowired
-    public HomeController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+
 
     @GetMapping("/")
     public String home(){
@@ -21,7 +27,8 @@ public class HomeController {
     }
 
     @GetMapping("/user")
-    public String user(){
+    public String user(Model model){
+        model.addAttribute("users",userService.getUser());
         return "/user";     //same as return "user"
     }
 

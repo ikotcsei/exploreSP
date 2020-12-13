@@ -1,6 +1,6 @@
 package com.explorespring.exploreSP.utility;
 
-import java.util.Set;
+import java.util.*;
 
 public class RandomDataFromSetSeed {
     /*
@@ -10,4 +10,15 @@ public class RandomDataFromSetSeed {
 
     private Set<String> seed1;
     private Set<String> seed2;
+
+    private List<Set<?>> sets;
+
+    public RandomDataFromSetSeed() {
+        sets.add(new HashSet<String>());
+        sets.add(new HashSet<Integer>());
+        sets.add(new HashSet<String>());
+
+//        sets.get(1).add("asdf");
+
+    }
 }

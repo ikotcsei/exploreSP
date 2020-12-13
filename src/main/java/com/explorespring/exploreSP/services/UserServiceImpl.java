@@ -3,11 +3,12 @@ package com.explorespring.exploreSP.services;
 import com.explorespring.exploreSP.model.User;
 import com.explorespring.exploreSP.repositories.UserRepository;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Configuration
+@Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;

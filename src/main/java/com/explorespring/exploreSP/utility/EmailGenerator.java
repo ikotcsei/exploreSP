@@ -20,6 +20,12 @@ public class EmailGenerator extends Generator{
         }
     }
 
+    public EmailGenerator(String regexp, Integer min, Integer max) throws PatternSyntaxException{
+        this(regexp);
+        this.minLength = min;
+        this.maxLength = max;
+    }
+
     //Generex generex = new Generex(errorReg);
 
     @Override
@@ -33,7 +39,13 @@ public class EmailGenerator extends Generator{
         this.validatedRegexp = regexp;
     }
 
-    public String getEmail(){
+    public String getRandomEmail(){
+
+        //max length is set
+        if(maxLength != -1){
+            return generex.random(minLength,maxLength);
+        }
+
         return generex.random();
     }
 }
