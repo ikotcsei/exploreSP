@@ -1,24 +1,36 @@
 package com.explorespring.exploreSP.controllers;
 
 
+import com.explorespring.exploreSP.model.User;
 import com.explorespring.exploreSP.repositories.UserRepository;
 import com.explorespring.exploreSP.services.UserService;
 import com.explorespring.exploreSP.services.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping
+@RestController
 @Controller
 public class HomeController {
 
 //    UserRepository userRepository;
     UserService userService;
 
+    //constructors r @Autowired
     public HomeController(UserService userService) {
         this.userService = userService;
     }
 
-    //constructors r @Autowired
+
 
 
     @GetMapping("/")
@@ -35,6 +47,11 @@ public class HomeController {
     @GetMapping("/admin")
     public String admin(){
         return "/admin";
+    }
+
+    @GetMapping("/userapi")
+    public List<User> getAllUsers(){
+        return new ArrayList<>(userService.getUser());
     }
 
 //    @GetMapping("/test")

@@ -33,21 +33,20 @@ public class ExploreSpApplication {
 		System.out.println(userRepository.findByUserName("sanyi").toString());
 		System.out.println(userRepository.findById(2).toString());
 
+// 		INIT THE TABLES with data
+//		userService.saveUser("asdf","asdf",true);+
+//		fillTableWithData(userService);
 
-		userService.saveUser("asdf","asdf",true);
+//		System.out.println(userRepository.findAll().toString());
 
-		System.out.println(userRepository.findAll().toString());
 
-		String email = "[a-z]{5}[@]{1}[a-z]{5}[.]{1}[c][o][m]";
-		String errorReg = "]";
-		Generex generex = new Generex(errorReg);
-		//generate 0..10 length
-		//String str = generex.random(0,10);
-		String str = generex.random(2,10);
-		for(int i =0;i < 100; i++){
-			System.out.println(str);
-			str = generex.random(2,10);
-		}
+
+
+
+		System.out.println("-----------------------------------------------");
+	}
+
+	public static void testRandomGeneratorFail(){
 
 		try {
 			byte[] array = new byte[7]; // length is bounded by 7
@@ -66,7 +65,28 @@ public class ExploreSpApplication {
 				System.out.println(exep.toString());
 		}
 
-		System.out.println("-----------------------------------------------");
+	}
+
+	public static void fillTableWithData(UserServiceImpl userService){
+		EmailGenerator eGen = new EmailGenerator("[a-z]{1,5}[@]{1}[a-z]{1,5}[.]{1}[c][o][m]",5,20);
+		NameGenerator nGen = new NameGenerator("[A-Z][a-z]{3,8}[ ]{1}[A-Z][a-z]{3,8}",5,20);
+		for(int i=0;i<100;i++){
+			userService.saveUser(nGen.getRandomName(),eGen.getRandomEmail(),true);
+		}
+	}
+
+
+	public static void regexTest(){
+
+		String email = "[a-z]{5}[@]{1}[a-z]{5}[.]{1}[c][o][m]";
+		Generex generex = new Generex(email);
+		//generate 0..10 length
+		//String str = generex.random(0,10);
+		String str = generex.random(2,10);
+		for(int i =0;i < 100; i++){
+			System.out.println(str);
+			str = generex.random(2,10);
+		}
 
 		EmailGenerator eGen = new EmailGenerator("[a-z]{1,5}[@]{1}[a-z]{1,5}[.]{1}[c][o][m]",5,20);
 		for(int i=0;i<10;i++){
@@ -78,12 +98,7 @@ public class ExploreSpApplication {
 			System.out.println(nGen.getRandomName());
 		}
 
-	//random name, email, pwd, stb
-
-//		System.out.println(userRepository.findByCustom("s").toArray().toString());
-
 	}
-
 
 
 }

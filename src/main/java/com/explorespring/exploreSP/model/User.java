@@ -10,7 +10,9 @@ public class User {
     private int id;
     @Column(name="username")
     private String userName;
+    @Column(name="password")
     private String password;
+    @Column(name="enabled")
     private boolean enabled;
 
     public User(){
