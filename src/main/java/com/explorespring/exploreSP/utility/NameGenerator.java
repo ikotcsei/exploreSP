@@ -7,8 +7,8 @@ import java.util.regex.PatternSyntaxException;
 
 public class NameGenerator extends Generator {
     private String validatedRegexp;
-    private Integer maxLength;
-    private Integer minLength;
+    private Integer maxLength=-1;
+    private Integer minLength=-1;
     private Generex generex;
 
     public NameGenerator(String regexp) throws PatternSyntaxException{

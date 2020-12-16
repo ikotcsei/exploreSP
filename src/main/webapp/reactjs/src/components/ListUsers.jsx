@@ -25,8 +25,11 @@ class ListUsers extends Component {
                         this.state.users.map(
                             user =>
                             <tr key = {user.id}>
+                                <td> { user.id} </td>
                                 <td> { user.userName} </td>
                                 <td> { user.password} </td>
+                                <td> { user.email} </td>
+                                <button>x</button>
                             </tr>
                         )
                     }

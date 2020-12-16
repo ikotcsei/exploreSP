@@ -3,6 +3,8 @@ package com.explorespring.exploreSP;
 import com.explorespring.exploreSP.auth.JDBCPostgresql.MyUserDetailsService;
 import com.explorespring.exploreSP.model.User;
 import com.explorespring.exploreSP.repositories.UserRepository;
+import com.explorespring.exploreSP.services.AuthorityService;
+import com.explorespring.exploreSP.services.AuthorityServiceImpl;
 import com.explorespring.exploreSP.services.UserService;
 import com.explorespring.exploreSP.services.UserServiceImpl;
 import com.explorespring.exploreSP.utility.EmailGenerator;
@@ -17,7 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-// == springbootconfiguration, componentscan, enableautoconfiguration
+// == @springbootconfiguration, @componentscan, @enableautoconfiguration
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class ExploreSpApplication {
@@ -29,6 +31,8 @@ public class ExploreSpApplication {
 
 		UserRepository userRepository = myuds.getUserRepository();
 		UserServiceImpl userService = ctx.getBean(UserServiceImpl.class);
+		AuthorityServiceImpl authorityService =  ctx.getBean(AuthorityServiceImpl.class);
+
 
 		System.out.println(userRepository.findByUserName("sanyi").toString());
 		System.out.println(userRepository.findById(2).toString());
@@ -38,6 +42,16 @@ public class ExploreSpApplication {
 //		fillTableWithData(userService);
 
 //		System.out.println(userRepository.findAll().toString());
+
+//		System.out.println(userService.countUsers());
+//		userService.deleteById(15);
+//		System.out.println(userService.countUsers());
+//		userService.delete(userService.findById(5).orElse(null));
+//		System.out.println(userService.countUsers());
+
+		System.out.println(authorityService.getAuthorities());
+
+
 
 
 
@@ -70,8 +84,11 @@ public class ExploreSpApplication {
 	public static void fillTableWithData(UserServiceImpl userService){
 		EmailGenerator eGen = new EmailGenerator("[a-z]{1,5}[@]{1}[a-z]{1,5}[.]{1}[c][o][m]",5,20);
 		NameGenerator nGen = new NameGenerator("[A-Z][a-z]{3,8}[ ]{1}[A-Z][a-z]{3,8}",5,20);
+		NameGenerator firstNameGen = new NameGenerator("[A-Z][a-z]{3,8}");
+
 		for(int i=0;i<100;i++){
-			userService.saveUser(nGen.getRandomName(),eGen.getRandomEmail(),true);
+			userService.saveUser(nGen.getRandomName(),firstNameGen.getRandomName(),true
+						,firstNameGen.getRandomName(),firstNameGen.getRandomName(),eGen.getRandomEmail());
 		}
 	}
 

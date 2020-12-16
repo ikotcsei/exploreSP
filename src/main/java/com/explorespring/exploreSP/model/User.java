@@ -4,25 +4,35 @@ import javax.persistence.*;
 
 @Entity   //will be mapped to a table
 @Table(name = "users", schema = "public")    //table name and sema req in postgres
-public class User {
+public class User implements Comparable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name="username")
+    @Column(name="username",unique=true)
     private String userName;
     @Column(name="password")
     private String password;
     @Column(name="enabled")
     private boolean enabled;
+    @Column(name="firstname")
+    private String firstName;
+    @Column(name="lastname")
+    private String lastName;
+    @Column(name="email",unique=true)
+    private String email;
+
 
     public User(){
 
     }
 
-    public User(String userName, String password, boolean enabled) {
+    public User(String userName, String password, boolean enabled, String firstName,String lastName, String email) {
         this.userName = userName;
         this.password = password;
         this.enabled = enabled;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
 //    @JoinColumn
@@ -64,6 +74,30 @@ public class User {
         this.enabled = enabled;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
 
     @Override
@@ -73,8 +107,16 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
+                ", first name =" + firstName +
+                ", last name =" + lastName +
+                ", email =" + email +
                 '}';
     }
 
 
+    @Override
+    public int compareTo(Object o) {
+        //object type = User
+        return Integer.compare(this.getId(), ((User) o).getId());
+    }
 }

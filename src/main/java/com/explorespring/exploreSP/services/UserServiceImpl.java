@@ -5,8 +5,7 @@ import com.explorespring.exploreSP.repositories.UserRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -19,15 +18,38 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Set<User> getUser() {
-        Set<User> userSet = new HashSet<>();
-        userRepository.findAll().iterator().forEachRemaining(userSet::add);
-        return userSet;
+//        Set<User> userSet = new HashSet<>();
+        TreeSet<User> userTreeSet = new TreeSet<>();
+
+        userRepository.findAll().iterator().forEachRemaining(userTreeSet::add);
+
+
+//        userTreeSet.addAll(userSet);
+
+        return userTreeSet;
     }
 
-    public void saveUser(String name, String pass, boolean isEnabled){
+    public void saveUser(String name, String pass, boolean isEnabled,String firstName,String lastName, String email){
 
-        User tmpU = new User(name,pass,isEnabled);
+        User tmpU = new User(name,pass,isEnabled,firstName,lastName,email);
         userRepository.save(tmpU);
+    }
+
+    public long countUsers(){
+        return userRepository.count();
+    }
+
+    public void deleteById(Integer id){
+        userRepository.deleteById(id);
+    }
+
+    public void delete(User u){
+        userRepository.delete(u);
+    }
+
+
+    public Optional<User> findById(Integer id){
+        return userRepository.findById(id);
     }
 
 }

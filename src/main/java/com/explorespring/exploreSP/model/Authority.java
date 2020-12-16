@@ -4,17 +4,15 @@ import javax.persistence.*;
 
 @Entity   //will be mapped to a table
 @Table(name = "authorities", schema = "public")    //table name and sema req in postgres
-public class Authority {
+public class Authority implements Comparable{
 
     @Id
-    @Column(name = "username")
+    @Column(name = "username",unique=true)
     private String userName;
     @Column(name = "authority")
     private String authority;
 
 
-//    @OneToOne(mappedBy = "auth")
-//    private User user;
 
     public String getUserName() {
         return userName;
@@ -32,13 +30,10 @@ public class Authority {
         this.authority = authority;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
+    @Override
+    public int compareTo(Object o) {
+        return String.CASE_INSENSITIVE_ORDER.compare(this.getUserName(),((Authority)o).getUserName());
+    }
 }
 
