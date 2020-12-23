@@ -16,15 +16,13 @@ public class UserServiceImpl implements UserService{
         this.userRepository = userRepository;
     }
 
+    //get all users ordered by id
     @Override
-    public Set<User> getUser() {
-//        Set<User> userSet = new HashSet<>();
+    public TreeSet<User> getUser() {
+
         TreeSet<User> userTreeSet = new TreeSet<>();
 
         userRepository.findAll().iterator().forEachRemaining(userTreeSet::add);
-
-
-//        userTreeSet.addAll(userSet);
 
         return userTreeSet;
     }

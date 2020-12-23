@@ -2,19 +2,24 @@ package com.explorespring.exploreSP.controllers;
 
 
 import com.explorespring.exploreSP.model.Authority;
+import com.explorespring.exploreSP.jsonmodels.Greeting;
 import com.explorespring.exploreSP.model.User;
-import com.explorespring.exploreSP.repositories.UserRepository;
 import com.explorespring.exploreSP.services.AuthorityService;
 import com.explorespring.exploreSP.services.UserService;
-import com.explorespring.exploreSP.services.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicLong;
 /*ACCESS HTTP HEADERS : https://www.baeldung.com/spring-rest-http-headers
 
+    @Crossorigins : https://spring.io/guides/gs/rest-service-cors/ (overwrite local, global )
+
+    @SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
 * */
 
 
@@ -27,10 +32,22 @@ import java.util.List;
 */
 
 
+/* @Responsebody  - object returned automatically serialized into JSON
+and @Requestbody - inc object in JSON, automatically deserializes the JSON into a Java type
+    https://www.baeldung.com/spring-request-response-body
+*
+*
+*/
+
+/* @Controller : specialized @Component, allows implementation classes to be autodetected through the classpath scanning.
+   @Restcontroller = @Controller + @Responsebody
+*
+*
+* */
+
 
 //for react axios from https 8443 to http 3000
 //@CrossOrigin(origins = "http://localhost:3000")
-//@RestController = @responsebody + @controller
 
 //@RequestMapping marks request handler methods inside @Controller classes, sets relative url mapping to root
 //first match will be used
@@ -38,7 +55,9 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-//    UserRepository userRepository;
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
     UserService userService;
     AuthorityService authorityService;
 
@@ -56,6 +75,17 @@ public class HomeController {
         return "redirect:/user"; // same as return "redirect:user"
     }
 
+
+
+
+    //REST service
+    @ResponseBody
+    @GetMapping("/greeting")
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    }
+
+
     @GetMapping("/user")
     public String user(Model model){
         model.addAttribute("users",userService.getUser());
@@ -70,8 +100,10 @@ public class HomeController {
     @ResponseBody // raw data response
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/userapi")
-    public List<User> getAllUsers(){
-        return new ArrayList<>(userService.getUser());
+    public TreeSet getAllUsers(){
+//        return new ArrayList<>(userService.getUser());
+        //same result as returning an arraylist
+        return (TreeSet) userService.getUser();
     }
 
     @ResponseBody // raw data response
@@ -105,7 +137,7 @@ public class HomeController {
     @RequestMapping(
             value = "/testheaderold",
             method = RequestMethod.GET,
-            headers = "Accept=application/json")
+            headers = "Accept=application/json")    //accept
     @ResponseBody
     public String getFoosAsJsonFromBrowser() {
         return "Get some Foos with Header Old";

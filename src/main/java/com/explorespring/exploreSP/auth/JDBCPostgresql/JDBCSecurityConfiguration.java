@@ -19,7 +19,7 @@ public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+		//authenticaint / authorization against the database user, auth table
 		auth.userDetailsService(uds);
 
 	}
@@ -34,8 +34,11 @@ public class JDBCSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 
-		http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/user")
-				.hasAnyRole("USER", "ADMIN").antMatchers("/h2-console").permitAll().antMatchers("/**").permitAll().and()
+		http.authorizeRequests()
+				.antMatchers("/admin").hasRole("ADMIN")
+				.antMatchers("/user").hasAnyRole("USER", "ADMIN")
+				.antMatchers("/h2-console").permitAll()
+				.antMatchers("/**").permitAll().and()
 				.formLogin();
 
 		// make h2-console work

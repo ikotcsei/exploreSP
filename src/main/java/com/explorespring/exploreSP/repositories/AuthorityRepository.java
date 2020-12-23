@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/* @RepositoryRestResource  - use to  this to customize export mapping and rels.
+    ? https://www.baeldung.com/spring-data-rest-intro
+* */
+
+
 @Repository
 public interface AuthorityRepository extends CrudRepository<Authority, String> {
     Optional<Authority> findByUserName(String name);

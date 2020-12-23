@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-/*extends Repository, CrudRepository, JpaRepository
+/*JpaRepository extends PagingRepository extends CrudRepository extends Repository
 *
 * */
 
