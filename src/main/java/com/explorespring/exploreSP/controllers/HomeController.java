@@ -4,14 +4,13 @@ package com.explorespring.exploreSP.controllers;
 import com.explorespring.exploreSP.model.Authority;
 import com.explorespring.exploreSP.jsonmodels.Greeting;
 import com.explorespring.exploreSP.model.User;
-import com.explorespring.exploreSP.services.AuthorityService;
-import com.explorespring.exploreSP.services.UserService;
+import com.explorespring.exploreSP.services.AuthorityServiceImpl;
+import com.explorespring.exploreSP.services.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicLong;
@@ -58,13 +57,13 @@ public class HomeController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    UserService userService;
-    AuthorityService authorityService;
+    UserServiceImpl userServiceImpl;
+    AuthorityServiceImpl authorityServiceImpl;
 
     //constructors r @Autowired
-    public HomeController(UserService userService, AuthorityService authorityService) {
-        this.authorityService = authorityService;
-        this.userService = userService;
+    public HomeController(UserServiceImpl userService, AuthorityServiceImpl authorityService) {
+        this.authorityServiceImpl = authorityService;
+        this.userServiceImpl = userService;
     }
 
 
@@ -88,7 +87,7 @@ public class HomeController {
 
     @GetMapping("/user")
     public String user(Model model){
-        model.addAttribute("users",userService.getUser());
+        model.addAttribute("users", userServiceImpl.getUser());
         return "/user";     //same as return "user"
     }
 
@@ -103,14 +102,20 @@ public class HomeController {
     public TreeSet getAllUsers(){
 //        return new ArrayList<>(userService.getUser());
         //same result as returning an arraylist
-        return (TreeSet) userService.getUser();
+        return (TreeSet) userServiceImpl.getUser();
+    }
+
+    @ResponseBody
+    @PostMapping("/userapi")
+    public void addUser(@RequestBody User user){
+        userServiceImpl.saveUser(user);
     }
 
     @ResponseBody // raw data response
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/authapi")
     public List<Authority> getAuthorities(){
-        return new ArrayList<>(authorityService.getAuthorities());
+        return new ArrayList<>(authorityServiceImpl.getAuthorities());
     }
 
     @RequestMapping(value = "/testget", method = RequestMethod.GET)
@@ -155,6 +160,8 @@ public class HomeController {
     }
 
 
+
+
     //pathvariable pl : https://localhost:8443/testpathvar/1
     @RequestMapping(value = "/testpathvar/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -178,6 +185,13 @@ public class HomeController {
     public String getBarsBySimplePathWithPathVariable(
             @PathVariable long numericId) {
         return "Get a specific Bar with id=" + numericId;
+    }
+
+    //this wont run, above reggular expression will be mapped first
+    @RequestMapping(value = "/testregular/{numericId:123}", method = RequestMethod.GET)
+    @ResponseBody
+    public String getBarsBySimplePathWithPathVariablea(@PathVariable long numericId) {
+        return "this is never called : Get a specific Bar with id="+ numericId;
     }
 
     //more requestmapping with parameters

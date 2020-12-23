@@ -33,6 +33,12 @@ public class UserServiceImpl implements UserService{
         userRepository.save(tmpU);
     }
 
+    public void saveUser(User user){
+
+//        User tmpU = new User(name,pass,isEnabled,firstName,lastName,email);
+        userRepository.save(user);
+    }
+
     public long countUsers(){
         return userRepository.count();
     }
